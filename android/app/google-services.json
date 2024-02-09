@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "523523824918",
+    "project_id": "riphah-cgpa-calculator-b5ef4",
+    "storage_bucket": "riphah-cgpa-calculator-b5ef4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523523824918:android:d124d367f51a1953364437",
+        "android_client_info": {
+          "package_name": "com.thezuraiz.riphah_cgpa_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523523824918-cn2iienm1glhha9vjf7jhf6liao53eve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thezuraiz.riphah_cgpa_calculator",
+            "certificate_hash": "82aaa570c7a530cda869af45114aaf6be4fc2579"
+          }
+        },
+        {
+          "client_id": "523523824918-eiqt499louq2vkm35lcce1qnkd6j52b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXFtPBt0wBGIMHlHIU6ZpRIgna41FtPc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523523824918-eiqt499louq2vkm35lcce1qnkd6j52b8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "523523824918-i34uv9u8r6qjk6hq4uk46drb657s2c4b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.thezuraiz.riphahCgpaCalculator"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

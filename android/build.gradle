@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlin_version = '1.9.22'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.4.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Define the build directory for the root project and all subprojects
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    // Define project dependencies here if needed
+}
+
+// Ensure that the app project is evaluated during configuration
+project(':app').evaluationDependsOn(':app')
+
+// Define a clean task to delete the build directory
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

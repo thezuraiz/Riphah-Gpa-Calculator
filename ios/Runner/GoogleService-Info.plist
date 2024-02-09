@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>523523824918-i34uv9u8r6qjk6hq4uk46drb657s2c4b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.523523824918-i34uv9u8r6qjk6hq4uk46drb657s2c4b</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>523523824918-cn2iienm1glhha9vjf7jhf6liao53eve.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBW0aKsCJQOA0DUrATyHtII4ELkICwUjXQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>523523824918</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.thezuraiz.riphahCgpaCalculator</string>
+	<key>PROJECT_ID</key>
+	<string>riphah-cgpa-calculator-b5ef4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>riphah-cgpa-calculator-b5ef4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:523523824918:ios:8c91e5a811a33836364437</string>
+</dict>
+</plist>
