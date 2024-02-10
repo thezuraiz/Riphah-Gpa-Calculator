@@ -54,6 +54,7 @@ dev_dependencies:
   google_sign_in: ^6.2.1
   form_field_validator: ^1.1.0
   flutter_styled_toast: ^2.2.1
+  syncfusion_flutter_gauges: ^24.2.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

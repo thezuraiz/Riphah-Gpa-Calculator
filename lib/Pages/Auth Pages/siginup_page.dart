@@ -10,7 +10,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -24,18 +23,23 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController sapIdController = TextEditingController();
 
-  File? pickedImage;
-  bool loaderFlag = false;
-  bool googleLoaderFlag = false;
+  bool showGoogleLoader = false;
 
   final _formKey = GlobalKey<FormState>();
 
   MoveToHome(BuildContext context) async {
+    FocusManager.instance.primaryFocus!.unfocus();
     if (_formKey.currentState!.validate()) {
-      final String name = nameController.text.toString();
       final String email = emailController.text.toString();
+      final String name = nameController.text.toString();
       final String password = passController.text.toString();
       final String sap = sapIdController.text.toString();
+
+      if (!email.endsWith("@riphah.edu.pk")) {
+        WidgetHelper.custom_error_toast(context, "Only Riphah Emial is Valid");
+        return;
+      }
+
       await signUp(context, name, sap, email, password);
     }
   }
@@ -43,6 +47,13 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            FirebaseAuth.instance.signOut();
+          }, icon: Icon(Icons.sign_language))
+        ],
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -126,18 +137,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       ]),
                     ),
                     WidgetHelper.customSizedBox(25),
-                    loaderFlag
-                        ? const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          )
-                        : SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () => MoveToHome(context),
-                              child: const Text("Register"),
-                            ),
-                          ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => MoveToHome(context),
+                        child: const Text("Register"),
+                      ),
+                    ),
                     WidgetHelper.customSizedBox(25),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -169,44 +175,53 @@ class _SignUpPageState extends State<SignUpPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                          IconButton(
-                                onPressed: ()async{
-                                  signInWithGoogle().then((value)async{
-                                    try{
-                                      final profile = value.additionalUserInfo!.profile;
-                                      final givenName = profile!['given_name'];
-                                      final familyName = profile['family_name'];
-                                      final pictureUrl = profile['picture'];
-                                      final id = profile['id'];
-                                      final email = profile['email'];
-
-                                      await FirebaseFirestore.instance.collection("Students").doc(id).set(
-                                          {
-                                            "name": "$givenName $familyName",
-                                            "email": email,
-                                            "sap": "",
-                                            "last_gpa": "",
-                                            "last_cgpa": "",
-                                            "total_subjects": "",
-                                            "profile_picture": pictureUrl
-                                          });
-                                    }catch(err){
-
-                                    }
-                                  });
-                                  },
-                                icon: Image.asset(
-                                  "lib/Assets/Icons/Google_Icon.png",
-                                  scale: 8,
-                                ),
-                              ),
                         IconButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, Routes.phoneAuth),
-                          icon: Icon(
-                            Icons.phone_forwarded,
-                            size: 45,
-                            color: Color(Color_helper.button_color),
+                            onPressed: () async {
+                              setState(() {
+                                showGoogleLoader = true;
+                              });
+                              signInWithGoogle().then((value) async {
+                                try {
+                                  final profile =
+                                      value.additionalUserInfo!.profile;
+                                  final givenName = profile!['given_name'];
+                                  final familyName = profile['family_name'];
+                                  final pictureUrl = profile['picture'];
+                                  final id = profile['id'];
+                                  final email = profile['email'];
+
+                                  await FirebaseFirestore.instance
+                                      .collection("Students")
+                                      .doc(id)
+                                      .set({
+                                    "name": "$givenName $familyName",
+                                    "email": email,
+                                    "sap": "",
+                                    "last_gpa": "",
+                                    "last_cgpa": "",
+                                    "total_subjects": "",
+                                    "profile_picture": pictureUrl
+                                  });
+                                } catch (err) {
+                                  setState(() {
+                                    showGoogleLoader = false;
+                                  });
+                                }
+                                Navigator.popAndPushNamed(context, Routes.landingPage);
+                              });
+                            },
+                            icon: showGoogleLoader
+                                ? CircularProgressIndicator()
+                                : Image.asset(
+                                    "lib/Assets/Icons/Google_Icon.png",
+                                    scale: 8,
+                                  )),
+                        IconButton(
+                          onPressed: () => WidgetHelper.custom_error_toast(
+                              context, "Module Under Development"),
+                          icon: Image.asset(
+                            "lib/Assets/Icons/Facebook_logo.png",
+                            scale: 11,
                           ),
                         ),
                       ],
@@ -251,22 +266,5 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
-  }
-
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
