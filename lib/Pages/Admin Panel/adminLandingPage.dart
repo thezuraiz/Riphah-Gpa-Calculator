@@ -30,11 +30,11 @@ class AdminLandingPage extends StatelessWidget {
               return AlertDialog(
                 title: Text("Are You Sure to Log Out"),
                 actions: [
-                  TextButton(onPressed: (){Navigator.pop(context);}, child: Text("No",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),)),
+                  TextButton(onPressed: (){Navigator.pop(context);}, child: const Text("No",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),)),
                   TextButton(onPressed: (){
                     Navigator.of(context).popUntil((route) => route.isFirst);
                     Navigator.popAndPushNamed(context, Routes.splashScreen);
-                  }, child: Text("Yes",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),)),
+                  }, child: const Text("Yes",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),)),
                 ],
               );
             });

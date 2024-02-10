@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addadminPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/removeAdmin.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/splash_screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.adminaddpage,
+      initialRoute: Routes.removeadminpage,
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.loginPage: (context) => LoginPage(),
@@ -49,7 +50,8 @@ class MyApp extends StatelessWidget {
 
         // Admin Panel
         Routes.adminlandingpage: (context) => const AdminLandingPage(),
-        Routes.adminaddpage: (context) => const AddAdminPage()
+        Routes.adminaddpage: (context) => const AddAdminPage(),
+        Routes.removeadminpage: (context) => RemoveAdminPage()
       },
     );
   }

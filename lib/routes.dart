@@ -18,4 +18,5 @@ class Routes{
   // Admin Panel
   static String adminlandingpage = '/admin-landing-page';
   static String adminaddpage = '/admin-add-page';
+  static String removeadminpage = 'remove-admin-page';
 }

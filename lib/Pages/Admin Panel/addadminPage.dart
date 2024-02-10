@@ -11,8 +11,8 @@ class AddAdminPage extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    // final String referenceAdmin = FirebaseAuth.instance.currentUser!.uid;
-    final String referenceAdmin = 'FirebaseAuth.instance.currentUser!.uid';
+    final String referenceAdmin = FirebaseAuth.instance.currentUser!.uid;
+    // final String referenceAdmin = 'FirebaseAuth.instance.currentUser!.uid';
 
     return Scaffold(
       appBar: AppBar(
