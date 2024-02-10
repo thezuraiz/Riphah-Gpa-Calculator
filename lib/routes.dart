@@ -14,4 +14,7 @@ class Routes{
 
   // Todo Module
   static String todomainpage = '/todomainpage';
+
+  // Admin Panel
+  static String adminlandingpage = '/admin-landing-page';
 }

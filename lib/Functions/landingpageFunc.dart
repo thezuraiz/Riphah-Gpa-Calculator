@@ -15,7 +15,7 @@ signoutButton(context){
             onPressed: () {
               signOut(context);
             },
-            child: Text(
+            child: const Text(
               "Yes",
               style: TextStyle(
                 color: Colors.black,
@@ -47,9 +47,9 @@ signOut(BuildContext context) async {
   try {
     await FirebaseAuth.instance.signOut().then((value) async {
       Navigator.pop(context);
-      print("User Signout");
+      debugPrint("User Signout");
     });
   } on FirebaseException catch (e) {
-    print("Error: ${e.code.toString()}");
+    debugPrint("Error: ${e.code.toString()}");
   }
 }

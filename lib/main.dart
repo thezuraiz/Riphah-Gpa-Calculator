@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/splash_screen.dart';
@@ -31,10 +32,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.splashScreen,
+      initialRoute: Routes.loginPage,
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
-        Routes.loginPage: (context) => const LoginPage(),
+        Routes.loginPage: (context) => LoginPage(),
         Routes.signupPage: (context) => const SignUpPage(),
         // Landing Page Routes
         Routes.landingPage: (context) => const LandingPage(),
@@ -45,7 +46,10 @@ class MyApp extends StatelessWidget {
         Routes.checkError: (context) => const ConnectionError(),
 
         // Todo Module
-        Routes.todomainpage: (context) => TodoMainPage()
+        Routes.todomainpage: (context) => TodoMainPage(),
+
+        // Admin Panel
+        Routes.adminlandingpage: (context) => AdminLandingPage()
       },
     );
   }

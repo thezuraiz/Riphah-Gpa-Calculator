@@ -36,7 +36,8 @@ class WidgetHelper {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(16),
-          textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
+          textStyle:
+              const TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
         ),
         onPressed: () => callback(),
         child: Text(msg),

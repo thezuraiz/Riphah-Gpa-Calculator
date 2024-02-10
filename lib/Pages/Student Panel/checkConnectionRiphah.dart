@@ -15,7 +15,7 @@ class CheckRiphah extends StatelessWidget {
           if(snapshot.hasData){
             return const LandingPage();
           }else{
-            return const LoginPage();
+            return LoginPage();
           }
         },
       ),
