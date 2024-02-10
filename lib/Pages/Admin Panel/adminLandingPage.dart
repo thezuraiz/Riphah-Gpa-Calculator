@@ -19,11 +19,11 @@ class AdminLandingPage extends StatelessWidget {
           WidgetHelper.customSizedBox(20),
           Image.asset("lib/Assets/Images/Riphah_Logo.png",scale: 4,),
           WidgetHelper.customSizedBox(60),
-          WidgetHelper.CustomElevatedButton(() => WidgetHelper.custom_message_toast(context, 'Module is under Development'), 'Notice Board'),
+          WidgetHelper.CustomElevatedButton(() => WidgetHelper.custom_message_toast(context, 'Module is under Development'), 'Add Faculty to Riphah World'),
           WidgetHelper.customSizedBox(10),
-          WidgetHelper.CustomElevatedButton((){}, 'Riphah World'),
+          WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.adminaddpage), 'Add Admin'),
           WidgetHelper.customSizedBox(10),
-          WidgetHelper.CustomElevatedButton(() => WidgetHelper.custom_message_toast(context, 'Module is under Development'), 'Add Admin'),
+          WidgetHelper.CustomElevatedButton(() => WidgetHelper.custom_message_toast(context, 'Module is under Development'), 'Remove Admin'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton((){
             showDialog(context: context, builder: (context){

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addadminPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
@@ -9,13 +10,11 @@ import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/checkConnectionRiph
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/gpaPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/landingPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/riphahWorld.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/connectionError.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/theme.dart';
 import 'package:riphah_cgpa_calculator/firebase_options.dart';
 import 'package:riphah_cgpa_calculator/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.loginPage,
+      initialRoute: Routes.adminaddpage,
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.loginPage: (context) => LoginPage(),
@@ -46,10 +45,11 @@ class MyApp extends StatelessWidget {
         Routes.checkError: (context) => const ConnectionError(),
 
         // Todo Module
-        Routes.todomainpage: (context) => TodoMainPage(),
+        Routes.todomainpage: (context) => const TodoMainPage(),
 
         // Admin Panel
-        Routes.adminlandingpage: (context) => AdminLandingPage()
+        Routes.adminlandingpage: (context) => const AdminLandingPage(),
+        Routes.adminaddpage: (context) => const AddAdminPage()
       },
     );
   }
