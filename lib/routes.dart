@@ -6,6 +6,7 @@ class Routes{
   // Landing Page Routes
   static String landingPage = "/landing_page";
   static String cgpa = "/cgpa_page";
+  static String gpa = "/gpa_page";
   static String riphahWorld = "/riphah_word";
   static String checkConnection = "/connection_connection";
   static String checkError = "/connection_error";

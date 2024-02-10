@@ -22,7 +22,7 @@ class LandingPage extends StatelessWidget {
               child: Image.asset("lib/Assets/Images/Riphah_Logo.png", scale: 4),
             ),
             WidgetHelper.customSizedBox(40),
-            WidgetHelper.CustomElevatedButton(() {}, "GPA Calculator"),
+            WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.gpa), "GPA Calculator"),
             WidgetHelper.customSizedBox(15),
             WidgetHelper.CustomElevatedButton(
                 () => Navigator.pushNamed(context, Routes.cgpa),
