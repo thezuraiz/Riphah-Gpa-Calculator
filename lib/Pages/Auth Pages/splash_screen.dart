@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
+import 'package:riphah_cgpa_calculator/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,14 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   jumpOnNextPage()async{
-    await Future.delayed(Duration(seconds: 1));
-    //
-    // var flag = await FirebaseAuth.instance.currentUser;
-    // if(flag != null){
-    //   Navigator.popAndPushNamed(context, MyRoutes.landingScreen);
-    // }else{
-    //   Navigator.popAndPushNamed(context, MyRoutes.loginScreen);
-    // }
+    await Future.delayed(const Duration(seconds: 1));
+
+    var flag = FirebaseAuth.instance.currentUser;
+    if(flag != null){
+      Navigator.popAndPushNamed(context, Routes.checkConnection);
+    }else{
+      Navigator.popAndPushNamed(context, Routes.loginPage);
+    }
   }
 
   @override
