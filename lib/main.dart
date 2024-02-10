@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/splash_screen.dart';
+import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/Todo/todomain.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/cgpaPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/checkConnectionRiphah.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/gpaPage.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         Routes.gpa: (context) => const GPAScreen(),
         Routes.cgpa: (context) => const CGPAPage(),
         Routes.checkError: (context) => const ConnectionError(),
+
+        // Todo Module
+        Routes.todomainpage: (context) => TodoMainPage()
       },
     );
   }

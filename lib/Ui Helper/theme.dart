@@ -13,7 +13,7 @@ ThemeData UiThemeData() {
         foregroundColor: Colors.white,
       titleTextStyle: TextStyle(
         fontWeight: FontWeight.w300,
-        fontSize: 30,
+        fontSize: 26,
         fontFamily: GoogleFonts.roboto().fontFamily
       )
     ),
@@ -41,6 +41,10 @@ ThemeData UiThemeData() {
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Color(Color_helper.button_color),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Color(Color_helper.button_color),
+      foregroundColor: Color(Color_helper.white_background_color)
     ),
   );
 }

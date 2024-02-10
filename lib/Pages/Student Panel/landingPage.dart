@@ -32,11 +32,9 @@ class LandingPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
                   padding: const EdgeInsets.all(14),
                 ),
-                onPressed: () => WidgetHelper.custom_error_toast(
-                    context, "Module Under Development"),
+                onPressed: () => Navigator.pushNamed(context, Routes.todomainpage),
                 child: const Text(
                   "TODO Task",
                   style: TextStyle(fontWeight: FontWeight.normal),

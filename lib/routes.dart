@@ -10,4 +10,8 @@ class Routes{
   static String riphahWorld = "/riphah_word";
   static String checkConnection = "/connection_connection";
   static String checkError = "/connection_error";
+
+
+  // Todo Module
+  static String todomainpage = '/todomainpage';
 }
