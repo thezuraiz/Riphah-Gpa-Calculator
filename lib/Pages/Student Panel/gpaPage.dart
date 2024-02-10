@@ -1,7 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

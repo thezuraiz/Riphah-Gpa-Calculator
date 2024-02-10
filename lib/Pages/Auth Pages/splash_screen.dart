@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         child: Center(
           child: Hero(
-            tag: Key("Logo_Animation"),
+            tag: const Key("Logo_Animation"),
             child: Image.asset("lib/Assets/Images/Riphah_Logo.png",
               width: 320,
             ),

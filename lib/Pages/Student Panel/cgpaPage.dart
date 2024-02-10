@@ -209,7 +209,7 @@ class _GPAGaugeState extends State<GPAGauge> {
           annotations: [
             GaugeAnnotation(
               widget: (widget.cgpa > 0)
-                  ? Text("CGPA: ${widget.cgpa.toStringAsFixed(3)}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800),)
+                  ? Text("CGPA: ${widget.cgpa.toStringAsFixed(3)}",style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w800),)
                   : const Text(""),
               positionFactor: 0.5,
               angle: 90,

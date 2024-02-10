@@ -13,9 +13,9 @@ class CheckRiphah extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context,snapshot){
           if(snapshot.hasData){
-            return LandingPage();
+            return const LandingPage();
           }else{
-            return LoginPage();
+            return const LoginPage();
           }
         },
       ),

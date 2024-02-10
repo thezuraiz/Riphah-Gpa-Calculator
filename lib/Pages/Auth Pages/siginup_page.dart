@@ -1,14 +1,9 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:riphah_cgpa_calculator/Functions/signupFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:riphah_cgpa_calculator/routes.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -183,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               }
                             },
                             icon: showGoogleLoader
-                                ? CircularProgressIndicator()
+                                ? const CircularProgressIndicator()
                                 : Image.asset(
                                     "lib/Assets/Icons/Google_Icon.png",
                                     scale: 8,
