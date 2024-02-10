@@ -46,8 +46,8 @@ signoutButton(context){
 signOut(BuildContext context) async {
   try {
     await FirebaseAuth.instance.signOut().then((value) async {
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.popAndPushNamed(context, Routes.landingPage);
+      Navigator.pop(context);
+      print("User Signout");
     });
   } on FirebaseException catch (e) {
     print("Error: ${e.code.toString()}");

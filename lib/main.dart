@@ -3,7 +3,9 @@ import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/splash_screen.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/cgpaPage.dart';
+import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/checkConnectionRiphah.dart';
 import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/landingPage.dart';
+import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/riphahWorld.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/connectionError.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/theme.dart';
@@ -27,15 +29,17 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.cgpa,
+      initialRoute: Routes.signupPage,
       routes: {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.loginPage: (context) => const LoginPage(),
         Routes.signupPage: (context) => const SignUpPage(),
         // Landing Page Routes
         Routes.landingPage: (context) => const LandingPage(),
+        Routes.checkConnection: (context) => const CheckRiphah(),
+        Routes.riphahWorld: (context) => const RiphahWorld(),
         Routes.cgpa: (context) => const CGPAPage(),
-        Routes.connectionError: (context) => const ConnectionError(),
+        Routes.checkError: (context) => const ConnectionError(),
       },
     );
   }

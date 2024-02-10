@@ -47,13 +47,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: (){
-            FirebaseAuth.instance.signOut();
-          }, icon: Icon(Icons.sign_language))
-        ],
-      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -180,35 +173,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               setState(() {
                                 showGoogleLoader = true;
                               });
-                              signInWithGoogle().then((value) async {
-                                try {
-                                  final profile =
-                                      value.additionalUserInfo!.profile;
-                                  final givenName = profile!['given_name'];
-                                  final familyName = profile['family_name'];
-                                  final pictureUrl = profile['picture'];
-                                  final id = profile['id'];
-                                  final email = profile['email'];
-
-                                  await FirebaseFirestore.instance
-                                      .collection("Students")
-                                      .doc(id)
-                                      .set({
-                                    "name": "$givenName $familyName",
-                                    "email": email,
-                                    "sap": "",
-                                    "last_gpa": "",
-                                    "last_cgpa": "",
-                                    "total_subjects": "",
-                                    "profile_picture": pictureUrl
-                                  });
-                                } catch (err) {
-                                  setState(() {
-                                    showGoogleLoader = false;
-                                  });
-                                }
-                                Navigator.popAndPushNamed(context, Routes.landingPage);
-                              });
+                              try {
+                                signInWithGoogle(context);
+                              } catch (e) {
+                                setState(() {
+                                  showGoogleLoader = true;
+                                });
+                                WidgetHelper.custom_error_toast(context, e.toString());
+                              }
                             },
                             icon: showGoogleLoader
                                 ? CircularProgressIndicator()

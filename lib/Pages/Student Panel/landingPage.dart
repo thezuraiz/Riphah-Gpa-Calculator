@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riphah_cgpa_calculator/Functions/landingpageFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
+import 'package:riphah_cgpa_calculator/routes.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -23,14 +24,17 @@ class LandingPage extends StatelessWidget {
             WidgetHelper.customSizedBox(40),
             WidgetHelper.CustomElevatedButton(() {}, "GPA Calculator"),
             WidgetHelper.customSizedBox(15),
-            WidgetHelper.CustomElevatedButton(() {}, "CGPA Calculator"),
+            WidgetHelper.CustomElevatedButton(
+                () => Navigator.pushNamed(context, Routes.cgpa),
+                "CGPA Calculator"),
             WidgetHelper.customSizedBox(15),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    padding: const EdgeInsets.all(14)),
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.all(14),
+                ),
                 onPressed: () => WidgetHelper.custom_error_toast(
                     context, "Module Under Development"),
                 child: const Text(
@@ -40,7 +44,7 @@ class LandingPage extends StatelessWidget {
               ),
             ),
             WidgetHelper.customSizedBox(15),
-            WidgetHelper.CustomElevatedButton(() {}, "RIPHAH World"),
+            WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.riphahWorld), "RIPHAH World"),
             WidgetHelper.customSizedBox(15),
             WidgetHelper.CustomElevatedButton(
                 () => signoutButton(context), "Sign Out")
