@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/riphahWorldFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 
@@ -14,6 +15,7 @@ class AdminRiphahWorld extends StatelessWidget {
         title: const Text("Add Faculty to Riphah World"),
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("riphahFaculty")
@@ -32,11 +34,12 @@ class AdminRiphahWorld extends StatelessWidget {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 final doc = snapshot.data!.docs[index];
+                final image = doc['teacherProfilePicture'];
                 return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
-                  color: Color(0xFFc0def6),
+                  color: Color(Color_helper.background_color),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(
@@ -45,36 +48,56 @@ class AdminRiphahWorld extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CircleAvatar(
-                              child: const Icon(
-                                Icons.person,
-                                // size: 60,
-                              ),
-                              backgroundColor: Colors.white,
-                              radius: 55,
-                            ),
+                            (image != null && image != '')
+                                ? Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Color(Color_helper
+                                            .button_color), // Define the border color here
+                                        width:
+                                            2, // Define the border width here
+                                      ),
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      backgroundImage: NetworkImage(image),
+                                      radius: 55,
+                                    ),
+                                  )
+                                : const CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 55,
+                                    child: Icon(
+                                      Icons.person_4_outlined,
+                                      size: 60,
+                                      color: Color(0xFFc0def6),
+                                    ),
+                                  ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Wrap(
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "${doc['teacherName']}.",
-                                          style: TextStyle(
-                                            color: Color(0xff17416a),
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.w500,
+                                        Expanded(
+                                          child: Text(
+                                            "${doc['teacherName']}.",
+                                            style: const TextStyle(
+                                              color: Color(0xff17416a),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
+                                        WidgetHelper.customSizedBox(10),
                                         Card(
-                                          shape: StadiumBorder(),
-                                          color: Color(
+                                          shape: const StadiumBorder(),
+                                          color: const Color(
                                               0xFF123456), // Change to your color
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -83,7 +106,8 @@ class AdminRiphahWorld extends StatelessWidget {
                                             ),
                                             child: Text(
                                               "${doc['teacherQualification']}",
-                                              style: TextStyle(color: Colors.white),
+                                              style: const TextStyle(
+                                                  color: Colors.white),
                                             ),
                                           ),
                                         )
@@ -92,7 +116,8 @@ class AdminRiphahWorld extends StatelessWidget {
                                     Text(
                                       "Expertise:",
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Color(Color_helper.button_color)
+                                            .withOpacity(0.5),
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -106,21 +131,63 @@ class AdminRiphahWorld extends StatelessWidget {
                                       builder: (context, expertiseSnapshot) {
                                         if (expertiseSnapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return CircularProgressIndicator();
+                                          return const CircularProgressIndicator();
                                         }
                                         if (expertiseSnapshot.hasError) {
                                           return Text(
                                             'Error: ${expertiseSnapshot.error}',
-                                            style: TextStyle(color: Colors.red),
+                                            style: const TextStyle(
+                                                color: Colors.red),
                                           );
                                         }
-                                        final expertiseDocs = expertiseSnapshot.data!.docs.first.data();
-                                        return Wrap(
-                                          children: [
-                                            Chip(label: Text(expertiseDocs['expertise1']),shape: StadiumBorder(),),
-                                            Chip(label: Text(expertiseDocs['expertise2']),shape: StadiumBorder()),
-                                            Chip(label: Text(expertiseDocs['expertise3']),shape: StadiumBorder()),
-                                          ],
+                                        final expertiseDocs = expertiseSnapshot
+                                            .data!.docs.first
+                                            .data();
+                                        final String expertise1 =
+                                            expertiseDocs['expertise1'];
+                                        final String expertise2 =
+                                            expertiseDocs['expertise2'];
+                                        final String expertise3 =
+                                            expertiseDocs['expertise3'];
+
+                                        return SizedBox(
+                                          width: double.infinity,
+                                          child: Wrap(
+                                            alignment:
+                                                WrapAlignment.spaceBetween,
+                                            children: [
+                                              if (expertise1 != null &&
+                                                  expertise1 != '')
+                                                Chip(
+                                                  label: Text(expertise1),
+                                                  shape: const StadiumBorder(),
+                                                  backgroundColor: Color(
+                                                          Color_helper
+                                                              .white_background_color)
+                                                      .withOpacity(0.5),
+                                                ),
+                                              if (expertise2 != null &&
+                                                  expertise2 != '')
+                                                Chip(
+                                                  label: Text(expertise2),
+                                                  shape: const StadiumBorder(),
+                                                  backgroundColor: Color(
+                                                          Color_helper
+                                                              .white_background_color)
+                                                      .withOpacity(0.5),
+                                                ),
+                                              if (expertise3 != null &&
+                                                  expertise3 != '')
+                                                Chip(
+                                                  label: Text(expertise3),
+                                                  shape: const StadiumBorder(),
+                                                  backgroundColor: Color(
+                                                          Color_helper
+                                                              .white_background_color)
+                                                      .withOpacity(0.5),
+                                                ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     )
@@ -131,26 +198,38 @@ class AdminRiphahWorld extends StatelessWidget {
                           ],
                         ),
                         WidgetHelper.customSizedBox(15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color(0xFF123456), // Change to your color
+                        Row(children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    20), // Optional: Define the border radius
+                                color: Color(Color_helper.button_color),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "${doc['teacherEmail']}",
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              ),
                             ),
-                            child: const Text('Get Email'),
-                            onPressed: () {
-                              var email = doc['teacherEmail'];
-                              Clipboard.setData(ClipboardData(text: email))
-                                  .then(
-                                (value) {
-                                  WidgetHelper.custom_message_toast(
-                                      context, "Email Copied!");
-                                },
-                              );
-                            },
                           ),
-                        ),
+                          IconButton(
+                              onPressed: () {
+                                WidgetHelper.alert_widget(
+                                    context,
+                                    "Sure to Delete",
+                                    () => deleteTeacher(context, doc.id));
+                                Navigator.pop(context);
+                                debugPrint("Detele Admin Button Call");
+                              },
+                              icon: const Icon(
+                                Icons.delete_outline,
+                                size: 30,
+                              )),
+                        ]),
                       ],
                     ),
                   ),
