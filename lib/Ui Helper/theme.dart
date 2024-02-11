@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
+import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 
 ThemeData UiThemeData() {
   return ThemeData(
@@ -46,5 +47,15 @@ ThemeData UiThemeData() {
       backgroundColor: Color(Color_helper.button_color),
       foregroundColor: Color(Color_helper.white_background_color)
     ),
+    dialogTheme: const DialogTheme(
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        color: Colors.black,
+        fontWeight: FontWeight.w400
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: Color(Color_helper.button_color)
+    )
   );
 }

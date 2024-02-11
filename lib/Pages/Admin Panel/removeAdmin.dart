@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/removeadminPage.dart';
+import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/adminFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 
 class RemoveAdminPage extends StatelessWidget {
   const RemoveAdminPage({super.key});
@@ -56,7 +55,6 @@ class RemoveAdminPage extends StatelessWidget {
                               return AlertDialog(
                                 content: const Text(
                                   "Are You Sure to remove Admin?",
-                                  style: TextStyle(fontSize: 20),
                                 ),
                                 actions: [
                                   TextButton(

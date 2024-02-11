@@ -21,3 +21,23 @@ AddAdmin(BuildContext context,String email,String password,String referenceAdmin
       WidgetHelper.custom_error_toast(context, e.code.toString());
     }
 }
+
+deleteAdmin(BuildContext context, String id) async {
+  Navigator.pop(context);
+  final String Uid = FirebaseAuth.instance.currentUser!.uid;
+  if (Uid == id) {
+    WidgetHelper.custom_error_toast(context, "You are deleting you self!");
+    return;
+  }
+  try {
+    await FirebaseFirestore.instance
+        .collection("adminTeachers")
+        .doc(id)
+        .delete()
+        .then((value) {
+      WidgetHelper.custom_message_toast(context, "User Deleted");
+    });
+  } catch (e) {
+    WidgetHelper.custom_error_toast(context, "Something Went Wrong");
+  }
+}

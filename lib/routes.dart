@@ -1,4 +1,6 @@
 class Routes{
+
+  // Auth Routes
   static String splashScreen = "/splash_screen";
   static String loginPage = "/login_page";
   static String signupPage = "/signup_page";
@@ -19,4 +21,6 @@ class Routes{
   static String adminlandingpage = '/admin-landing-page';
   static String adminaddpage = '/admin-add-page';
   static String removeadminpage = 'remove-admin-page';
+  static String adminriphahworld = '/adminriphahworld';
+
 }
