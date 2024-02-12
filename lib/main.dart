@@ -18,10 +18,12 @@ import 'package:riphah_cgpa_calculator/Ui%20Helper/theme.dart';
 import 'package:riphah_cgpa_calculator/firebase_options.dart';
 import 'package:riphah_cgpa_calculator/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.adminaddpage,
+      initialRoute: Routes.splashScreen,
       routes: {
         // Auth Routes
         Routes.splashScreen: (context) => const SplashScreen(),

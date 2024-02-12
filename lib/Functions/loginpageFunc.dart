@@ -8,6 +8,8 @@ import '../routes.dart';
 
 StudentLoginPage(BuildContext context, final formKey, final String email,
     final String password) async {
+  FocusManager.instance.primaryFocus!.unfocus();
+
   if (formKey.currentState!.validate()) {
     FocusManager.instance.primaryFocus!.unfocus();
 
@@ -24,7 +26,8 @@ StudentLoginPage(BuildContext context, final formKey, final String email,
   }
 }
 
-AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey, String email, String password) async {
+AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
+    String email, String password) async {
   debugPrint("object-> $email");
   debugPrint("object-> $password");
   try {
@@ -62,7 +65,9 @@ AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey, String email
         final bytes = await utf8.encode(password);
         final hashPassword = await sha256.convert(bytes);
         print("Digest as hex string: $hashPassword");
+
         if (firestoreEmail == email && firestorePassword == hashPassword) {
+          WidgetHelper.custom_message_toast(context, "Authorized");
           Navigator.pushNamed(context, Routes.adminlandingpage);
           debugPrint('Authorized');
         } else {

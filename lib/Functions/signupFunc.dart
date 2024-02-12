@@ -45,9 +45,8 @@ uploadData(BuildContext context, final String name, final String email,
       "total_subjects": "",
       "profile_picture": ""
     }).then((value) {
-      WidgetHelper.custom_message_toast(context, "Account Created");
-      Future.delayed(const Duration(seconds: 1));
       Navigator.popAndPushNamed(context, Routes.checkConnection);
+      WidgetHelper.custom_message_toast(context, "Account Created");
     });
   } catch (e) {
     debugPrint('Error on uploadData: ${e.toString()}');
@@ -64,6 +63,7 @@ Future<UserCredential?> signInWithGoogle(context) async {
     accessToken: googleAuth?.accessToken,
     idToken: googleAuth?.idToken,
   );
+
   UserCredential? user = await FirebaseAuth.instance
       .signInWithCredential(credential)
       .then((value) async {
@@ -75,14 +75,17 @@ Future<UserCredential?> signInWithGoogle(context) async {
       String studentId = FirebaseAuth.instance.currentUser!.uid;
       final email = profile['email'];
 
-      await FirebaseFirestore.instance
-          .collection("Students")
-          .doc(studentId)
-          .set({
-        "name": "$givenName $familyName",
-        "email": email,
-        "profile_picture": pictureUrl
-      });
+      final userRef = await FirebaseFirestore.instance.collection("Students").doc(studentId);
+
+      final userData = await userRef.get();
+
+      if (!userData.exists) {
+        await userRef.set({
+          "name": "$givenName $familyName",
+          "email": email,
+          "profile_picture": pictureUrl
+        });
+      }
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
     }

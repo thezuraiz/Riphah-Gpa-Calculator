@@ -26,11 +26,10 @@ class WidgetHelper {
 
   static custom_message_toast(BuildContext context, final String msg) {
     return Flushbar(
-      icon: Icon(Icons.done,color: Color(Color_helper.button_color),),
-      title: 'Done!',
+      icon: Icon(Icons.done,color: Colors.white),
       messageText: Text(msg, style: const TextStyle(color: Colors.white)),
       flushbarPosition: FlushbarPosition.TOP,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFe3a038),
       duration: const Duration(seconds: 3),
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),

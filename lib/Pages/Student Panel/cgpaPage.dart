@@ -40,7 +40,7 @@ class _CGPAPageState extends State<CGPAPage> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          color: Color(Color_helper.background_color),
+          // color: Color(Color_helper.background_color),
           child: Form(
             key: formKey,
             child: Column(
@@ -134,11 +134,11 @@ class _CGPAPageState extends State<CGPAPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Color(Color_helper.button_color),
+                      backgroundColor: Color(Color_helper.button_color),
+                      // foregroundColor: Color(Color_helper.button_color),
                       padding: const EdgeInsets.all(16),
-                      side: BorderSide(
-                          color: Color(Color_helper.button_color), width: 1),
+                      // side: BorderSide(
+                      //     color: Color(Color_helper.button_color), width: 1),
                     ),
                     onPressed: isValid,
                     child: const Text(

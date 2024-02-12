@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   jumpOnNextPage()async{
     await Future.delayed(const Duration(seconds: 1));
-
     var flag = FirebaseAuth.instance.currentUser;
     if(flag != null){
       Navigator.popAndPushNamed(context, Routes.checkConnection);
@@ -33,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
           decoration: BoxDecoration(
-            color: Color(Color_helper.background_color),
+            // color: Color(Color_helper.background_color),
           ),
         child: Center(
           child: Hero(

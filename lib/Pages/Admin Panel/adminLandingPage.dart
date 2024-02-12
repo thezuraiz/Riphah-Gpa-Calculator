@@ -23,8 +23,7 @@ class AdminLandingPage extends StatelessWidget {
           ),
           WidgetHelper.customSizedBox(60),
           WidgetHelper.CustomElevatedButton(
-              () => WidgetHelper.custom_message_toast(
-                  context, 'Module is under Development'),
+              () => Routes.add_teacher_riphah_world,
               'Add Faculty to Riphah World'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(
@@ -32,8 +31,7 @@ class AdminLandingPage extends StatelessWidget {
               'Add Admin'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(
-              () => WidgetHelper.custom_message_toast(
-                  context, 'Module is under Development'),
+              () => Navigator.pushNamed(context, Routes.removeadminpage),
               'Remove Admin'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(() {

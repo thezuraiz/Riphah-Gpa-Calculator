@@ -7,6 +7,7 @@ ThemeData UiThemeData() {
     primaryColor: Color(Color_helper.button_color),
     useMaterial3: true,
     fontFamily: GoogleFonts.poppins().fontFamily,
+    brightness: Brightness.light,
     appBarTheme: AppBarTheme(
         centerTitle: true,
         backgroundColor: Color(Color_helper.button_color),

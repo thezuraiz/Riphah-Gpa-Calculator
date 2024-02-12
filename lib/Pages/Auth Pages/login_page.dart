@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Color(Color_helper.background_color),
+      // backgroundColor: Color(Color_helper.background_color),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30),
@@ -59,15 +59,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 WidgetHelper.customSizedBox(55),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: "example@riphah.edu.pk",
-                    prefixIcon: Icon(Icons.email_outlined),
+                  decoration: InputDecoration(
+                    hintText: adminPanel ? "example@riphah.edu.pk": 'example@students.riphah.edu.pk',
+                    prefixIcon: const Icon(Icons.email_outlined),
                   ),
                   controller: emailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Required";
-                      } else if (!value.endsWith("@riphah.edu.pk")) {
+                      } else if (!value.endsWith( adminPanel ? "@riphah.edu.pk" : "@students.riphah.edu.pk")) {
                         return "Only Riphah Email Required";
                       } else if (!value.contains('@')) {
                         return "Invalid Email";

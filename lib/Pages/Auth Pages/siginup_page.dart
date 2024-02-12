@@ -30,11 +30,6 @@ class _SignUpPageState extends State<SignUpPage> {
       final String password = passController.text.toString();
       final String sap = sapIdController.text.toString();
 
-      if (!email.endsWith("@riphah.edu.pk")) {
-        WidgetHelper.custom_error_toast(context, "Only Riphah Emial is Valid");
-        return;
-      }
-
       await signUp(context, name, sap, email, password);
     }
   }
@@ -83,10 +78,15 @@ class _SignUpPageState extends State<SignUpPage> {
                           prefixIcon: const Icon(Icons.email_outlined),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20))),
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: "Email Required"),
-                        EmailValidator(errorText: 'Invalid Email')
-                      ]),
+                      validator:(value){
+                        if(value == null && value!.isEmpty){
+                          return 'Required';
+                        }else if(!value.contains('@')){
+                          return 'Invalid Email';
+                        }else if(!value.endsWith('@students.riphah.edu.pk')){
+                          return 'Only Riphah Students Allow. SignIn With Google!';
+                        }
+                      },
                       controller: emailController,
                     ),
                     WidgetHelper.customSizedBox(25),

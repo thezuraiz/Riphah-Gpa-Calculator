@@ -23,11 +23,11 @@ createFunc(
         "title": titleController.text.toString(),
         "description": descController.text.toString()
       }).then((value) {
-        WidgetHelper.custom_message_toast(context, "Task Added");
         Navigator.pop(context);
+        WidgetHelper.custom_message_toast(context, "Task Added");
       });
     } catch (e) {
-      // print(e);
+      debugPrint("Adding Task Error: ${e.toString()}");
     }
   }
 }
@@ -54,8 +54,7 @@ readData<Widget>(BuildContext context) {
                   onTap: () =>
                       updateData(context, uid, time, title, description),
                   child: Card(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                    margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                     child: ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Color(Color_helper.button_color),
@@ -74,9 +73,8 @@ readData<Widget>(BuildContext context) {
                                     title: const Text(
                                       "Sure To Delete?",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500,
                                           color: Colors.black,
-                                          fontSize: 24),
+                                          fontSize: 22),
                                     ),
                                     actions: [
                                       TextButton(
@@ -87,7 +85,7 @@ readData<Widget>(BuildContext context) {
                                                 context, "Task Delete");
                                           },
                                           child: const Text(
-                                            "Ok",
+                                            "Yes",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,

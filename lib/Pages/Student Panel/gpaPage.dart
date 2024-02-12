@@ -100,7 +100,13 @@ class _GPAScreenState extends State<GPAScreen> {
               ),
             ),
             InkWell(
-              onTap: () => addSubject(),
+              onTap: () {
+                setState(() {
+
+                });
+                showBottomResult = false;
+                addSubject();
+              },
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 child: DottedBorder(
@@ -392,10 +398,11 @@ Widget ButtomGPAComponent(totalCr, selectedCreditPoints) {
   // print("selectedCreditPoints: $selectedCreditPoints");
   try {
     String studentId = FirebaseAuth.instance.currentUser!.uid;
-    FirebaseFirestore.instance.collection("Students").doc(studentId).update({
-      "gpa": selectedCreditPoints.toStringAsFixed(2)
-    });
-  }catch(e){
+    FirebaseFirestore.instance
+        .collection("Students")
+        .doc(studentId)
+        .update({"gpa": selectedCreditPoints.toStringAsFixed(2)});
+  } catch (e) {
     debugPrint("Error on ButtonGPAComponent: ${e.toString()}");
   }
 
@@ -421,7 +428,8 @@ Widget ButtomGPAComponent(totalCr, selectedCreditPoints) {
                 ),
                 Text(
                   crHrs.toString(),
-                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
@@ -434,7 +442,8 @@ Widget ButtomGPAComponent(totalCr, selectedCreditPoints) {
                 ),
                 Text(
                   selectedCreditPoints.toStringAsFixed(2),
-                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.w500),
                 ),
               ],
             )
