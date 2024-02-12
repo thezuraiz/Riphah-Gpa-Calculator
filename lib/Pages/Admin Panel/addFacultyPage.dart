@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -38,11 +39,8 @@ class _addFacultyPageState extends State<addFacultyPage> {
             key: formKey,
             child: Column(
               children: [
-                WidgetHelper.customSizedBox(20),
                 InkWell(
-                  onTap: () {
-                    showAlertBox(context);
-                  },
+                  onTap: () => showAlertBox(context),
                   child: pickedImage != null
                       ? CircleAvatar(
                           radius: 80,
@@ -50,13 +48,15 @@ class _addFacultyPageState extends State<addFacultyPage> {
                         )
                       : CircleAvatar(
                           radius: 80,
+                          backgroundColor: Color(Color_helper.background_color),
                           child: Icon(
                             Icons.camera_alt,
                             size: 80,
+                            color: Color(Color_helper.button_color),
                           ),
                         ),
                 ),
-                WidgetHelper.customSizedBox(30),
+                WidgetHelper.customSizedBox(20),
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: "Name",
@@ -119,11 +119,16 @@ class _addFacultyPageState extends State<addFacultyPage> {
                           try {
                             if (formKey.currentState!.validate()) {
                               final String date = DateTime.now().toString();
-                              final String url;
+                              String url = '';
 
-                              UploadTask uploadTask = FirebaseStorage.instance.ref('Profile Pictures').child(date).putFile(pickedImage!);
-                              TaskSnapshot taskSnapshot = await uploadTask;
-                              url = await taskSnapshot.ref.getDownloadURL();
+                              try {
+                                UploadTask uploadTask = FirebaseStorage.instance
+                                    .ref('Profile Pictures')
+                                    .child(date)
+                                    .putFile(pickedImage!);
+                                TaskSnapshot taskSnapshot = await uploadTask;
+                                url = await taskSnapshot.ref.getDownloadURL();
+                              } catch (e) {}
 
                               await FirebaseFirestore.instance
                                   .collection('riphahFaculty')
@@ -149,6 +154,9 @@ class _addFacultyPageState extends State<addFacultyPage> {
                                 'expertise3':
                                     expertise3Controller.text.toString()
                               });
+                              pickedImage = null;
+                              setState(() {});
+
                               WidgetHelper.custom_message_toast(
                                   context, 'Teacher Added');
                             }
@@ -168,18 +176,18 @@ class _addFacultyPageState extends State<addFacultyPage> {
 
   pickImage(ImageSource imageSource) async {
     try {
-      final photo = await ImagePicker().pickImage(source: imageSource);
+      final photo = await ImagePicker().pickImage(source: imageSource,imageQuality: 40);
       if (photo == null) {
         File("path");
         return;
-      };
+      }
       final tempPhoto = File(photo.path);
       setState(() {
         pickedImage = tempPhoto;
-        print('pickImage : ${tempPhoto.toString()}');
+        debugPrint('pickImage : ${tempPhoto.toString()}');
       });
     } catch (ex) {
-      print("ex: ${ex.toString()}");
+      debugPrint("ex: ${ex.toString()}");
     }
   }
 
@@ -188,7 +196,7 @@ class _addFacultyPageState extends State<addFacultyPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Pick Image From"),
+            title: const Text("Pick Image From"),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -197,16 +205,16 @@ class _addFacultyPageState extends State<addFacultyPage> {
                     pickImage(ImageSource.camera);
                     Navigator.pop(context);
                   },
-                  leading: Icon(Icons.camera_alt),
-                  title: Text("Camera"),
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text("Camera"),
                 ),
                 ListTile(
                   onTap: () {
                     pickImage(ImageSource.gallery);
                     Navigator.pop(context);
                   },
-                  leading: Icon(Icons.image),
-                  title: Text("Image"),
+                  leading: const Icon(Icons.image),
+                  title: const Text("Image"),
                 )
               ],
             ),
