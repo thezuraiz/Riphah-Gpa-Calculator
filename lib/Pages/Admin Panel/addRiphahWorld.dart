@@ -16,7 +16,7 @@ class AddRiphahWorld extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => Navigator.pushNamed(context, Routes.add_admin_riphah_world),
+        onPressed: () => Navigator.pushNamed(context, Routes.add_teacher_riphah_world),
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),

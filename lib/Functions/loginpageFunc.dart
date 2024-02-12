@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,8 +24,7 @@ StudentLoginPage(BuildContext context, final formKey, final String email,
   }
 }
 
-AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
-    String email, String password) async {
+AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey, String email, String password) async {
   debugPrint("object-> $email");
   debugPrint("object-> $password");
   try {
@@ -54,9 +55,14 @@ AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
         debugPrint("Data inside the document: $data");
         debugPrint("User Password: ${data!['adminEmail']}");
         debugPrint("User Password: ${data!['adminPass']}");
+
         final firestoreEmail = data!['adminEmail'];
         final firestorePassword = data!['adminPass'];
-        if (firestoreEmail == email && firestorePassword == password) {
+
+        final bytes = await utf8.encode(password);
+        final hashPassword = await sha256.convert(bytes);
+        print("Digest as hex string: $hashPassword");
+        if (firestoreEmail == email && firestorePassword == hashPassword) {
           Navigator.pushNamed(context, Routes.adminlandingpage);
           debugPrint('Authorized');
         } else {

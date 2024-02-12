@@ -66,6 +66,8 @@ class AddAdminPage extends StatelessWidget {
                   FocusManager.instance.primaryFocus!.unfocus();
                   if (_formKey.currentState!.validate()) {
                       AddAdmin(context, emailController.text.toString(), passwordController.text.toString(), referenceAdmin);
+                      emailController.text = '';
+                      passwordController.text = '';
                   }
                 },
                 child: const Text("Add Admin"),

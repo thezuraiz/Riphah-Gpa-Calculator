@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.riphahWorld,
+      initialRoute: Routes.adminaddpage,
       routes: {
         // Auth Routes
         Routes.splashScreen: (context) => const SplashScreen(),
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         Routes.adminaddpage: (context) => const AddAdminPage(),
         Routes.removeadminpage: (context) => const RemoveAdminPage(),
         Routes.adminriphahworld: (context) => const AddRiphahWorld(),
-        Routes.add_admin_riphah_world: (context) => const addFacultyPage()
+        Routes.add_teacher_riphah_world: (context) => const addFacultyPage()
       },
     );
   }

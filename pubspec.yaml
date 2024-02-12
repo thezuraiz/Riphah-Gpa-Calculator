@@ -58,7 +58,7 @@ dev_dependencies:
   flutter_slidable: ^3.0.1
   dotted_border: ^2.1.0
   image_picker: ^1.0.7
-
+  crypto: ^3.0.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
