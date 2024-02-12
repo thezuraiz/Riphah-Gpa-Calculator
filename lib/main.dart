@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: UiThemeData(),
-      initialRoute: Routes.adminriphahworld,
+      initialRoute: Routes.riphahWorld,
       routes: {
         // Auth Routes
         Routes.splashScreen: (context) => const SplashScreen(),

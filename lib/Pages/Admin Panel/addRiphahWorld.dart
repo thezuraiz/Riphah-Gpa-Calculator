@@ -54,30 +54,21 @@ class AddRiphahWorld extends StatelessWidget {
                           children: [
                             (image != null && image != '')
                                 ? Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Color(Color_helper
-                                            .button_color), // Define the border color here
-                                        width:
-                                            2, // Define the border width here
-                                      ),
-                                    ),
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      backgroundImage: NetworkImage(image),
-                                      radius: 55,
-                                    ),
-                                  )
+                              child: CircleAvatar(
+                                backgroundColor: Color(Color_helper.button_color),
+                                backgroundImage: NetworkImage(image),
+                                radius: 55,
+                              ),
+                            )
                                 : const CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    radius: 55,
-                                    child: Icon(
-                                      Icons.person_4_outlined,
-                                      size: 60,
-                                      color: Color(0xFFc0def6),
-                                    ),
-                                  ),
+                              backgroundColor: Colors.white,
+                              radius: 55,
+                              child: Icon(
+                                Icons.person_4_outlined,
+                                size: 60,
+                                color: Color(0xFFc0def6),
+                              ),
+                            ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 15),
