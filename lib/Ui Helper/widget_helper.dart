@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
+import 'package:another_flushbar/flushbar.dart';
+
 
 class WidgetHelper {
   static customSizedBox(double h) {
     return SizedBox(height: h);
   }
 
-  static ToastFuture custom_error_toast(
-      BuildContext context, final String msg) {
-    return showToast(msg,
-        context: context,
-        animation: StyledToastAnimation.fadeScale,
-        position: StyledToastPosition.top,
-        backgroundColor: Colors.red.shade600,
-        textStyle: const TextStyle(color: Colors.white),
-        borderRadius: BorderRadius.circular(10));
+  static custom_error_toast(BuildContext context, final String msg) {
+    return Flushbar(
+      icon: Icon(Icons.error_outline,color: Colors.white,),
+      title: 'Error!',
+      messageText: Text(msg, style: const TextStyle(color: Colors.white)),
+      flushbarPosition: FlushbarPosition.TOP,
+      backgroundColor: Colors.red.shade600,
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+      borderRadius: BorderRadius.circular(8),
+    ).show(context);
   }
 
-  static ToastFuture custom_message_toast(
-      BuildContext context, final String msg) {
-    return showToast(msg,
-        context: context,
-        animation: StyledToastAnimation.fadeScale,
-        position: StyledToastPosition.top,
-        backgroundColor: Color(Color_helper.button_color),
-        textStyle: const TextStyle(color: Colors.white),
-        borderRadius: BorderRadius.circular(20));
+
+  static custom_message_toast(BuildContext context, final String msg) {
+    return Flushbar(
+      icon: Icon(Icons.done,color: Color(Color_helper.button_color),),
+      title: 'Done!',
+      messageText: Text(msg, style: const TextStyle(color: Colors.white)),
+      flushbarPosition: FlushbarPosition.TOP,
+      backgroundColor: Colors.white,
+      duration: const Duration(seconds: 3),
+      padding: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+      borderRadius: BorderRadius.circular(8),
+    ).show(context);
   }
 
   static Widget CustomElevatedButton(

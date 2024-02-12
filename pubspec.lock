@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.21"
+  another_flushbar:
+    dependency: "direct main"
+    description:
+      name: another_flushbar
+      sha256: "19bf9520230ec40b300aaf9dd2a8fefcb277b25ecd1c4838f530566965befc2a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.12.30"
   async:
     dependency: transitive
     description:
@@ -42,7 +50,7 @@ packages:
     source: hosted
     version: "1.1.1"
   cloud_firestore:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cloud_firestore
       sha256: b62be7f11ba72fd6112d8921336d670023a6784898e5cf4d21754cc114d8b56c
@@ -82,7 +90,7 @@ packages:
     source: hosted
     version: "0.3.3+8"
   crypto:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: crypto
       sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
@@ -98,7 +106,7 @@ packages:
     source: hosted
     version: "1.0.6"
   dotted_border:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dotted_border
       sha256: "108837e11848ca776c53b30bc870086f84b62ed6e01c503ed976e8f8c7df9c04"
@@ -154,7 +162,7 @@ packages:
     source: hosted
     version: "0.9.3+1"
   firebase_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_auth
       sha256: "549f8ceb8cfc1920f85dea0ab73fb7dc209ee8182916b252eda342786c33369d"
@@ -178,7 +186,7 @@ packages:
     source: hosted
     version: "5.9.4"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       sha256: "7e049e32a9d347616edb39542cf92cd53fdb4a99fb6af0a0bff327c14cd76445"
@@ -202,7 +210,7 @@ packages:
     source: hosted
     version: "2.11.4"
   firebase_storage:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_storage
       sha256: b87029b506972987a827feaf296c21cd0fe1bb69c2595be1672253ba5205573e
@@ -252,7 +260,7 @@ packages:
     source: hosted
     version: "2.0.17"
   flutter_slidable:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_slidable
       sha256: "19ed4813003a6ff4e9c6bcce37e792a2a358919d7603b2b31ff200229191e44c"
@@ -260,7 +268,7 @@ packages:
     source: hosted
     version: "3.0.1"
   flutter_styled_toast:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_styled_toast
       sha256: e667f13a665820eb0fa8506547e47eacbcddf1948d6d3036cfd3b089bd4b0516
@@ -278,7 +286,7 @@ packages:
     source: sdk
     version: "0.0.0"
   form_field_validator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: form_field_validator
       sha256: c1fc6c89b5525288c02fe989a88c6f30bb6072da4f9dded17a04cf68c4abfb87
@@ -286,7 +294,7 @@ packages:
     source: hosted
     version: "1.1.0"
   google_fonts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_fonts
       sha256: f0b8d115a13ecf827013ec9fc883390ccc0e87a96ed5347a3114cac177ef18e8
@@ -302,7 +310,7 @@ packages:
     source: hosted
     version: "0.3.0+2"
   google_sign_in:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_sign_in
       sha256: "0b8787cb9c1a68ad398e8010e8c8766bfa33556d2ab97c439fb4137756d7308f"
@@ -358,7 +366,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image_picker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: "26222b01a0c9a2c8fe02fc90b8208bd3325da5ed1f4a2acabf75939031ac0bdd"
@@ -611,7 +619,7 @@ packages:
     source: hosted
     version: "24.2.4"
   syncfusion_flutter_gauges:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: syncfusion_flutter_gauges
       sha256: "07db7bf414a0d9b09a84678a191c47954c80788ec83fb227373dc2ff5fdfb2ca"
