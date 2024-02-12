@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/riphahWorldFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
+import 'package:riphah_cgpa_calculator/routes.dart';
 
-class AdminRiphahWorld extends StatelessWidget {
-  const AdminRiphahWorld({Key? key}) : super(key: key);
+class AddRiphahWorld extends StatelessWidget {
+  const AddRiphahWorld({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,12 @@ class AdminRiphahWorld extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Add Faculty to Riphah World"),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.pushNamed(context, Routes.add_admin_riphah_world),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("riphahFaculty")
@@ -129,62 +134,52 @@ class AdminRiphahWorld extends StatelessWidget {
                                           .collection("expertise")
                                           .snapshots(),
                                       builder: (context, expertiseSnapshot) {
-                                        if (expertiseSnapshot.connectionState ==
-                                            ConnectionState.waiting) {
+                                        if (expertiseSnapshot.connectionState == ConnectionState.waiting) {
                                           return const CircularProgressIndicator();
                                         }
                                         if (expertiseSnapshot.hasError) {
                                           return Text(
                                             'Error: ${expertiseSnapshot.error}',
-                                            style: const TextStyle(
-                                                color: Colors.red),
+                                            style: const TextStyle(color: Colors.red),
                                           );
                                         }
-                                        final expertiseDocs = expertiseSnapshot
-                                            .data!.docs.first
-                                            .data();
-                                        final String expertise1 =
-                                            expertiseDocs['expertise1'];
-                                        final String expertise2 =
-                                            expertiseDocs['expertise2'];
-                                        final String expertise3 =
-                                            expertiseDocs['expertise3'];
+                                        if (!expertiseSnapshot.hasData ||
+                                            expertiseSnapshot.data!.docs.isEmpty) {
+                                          return const Text('No expertise data available');
+                                        }
+                                        final expertiseDocs = expertiseSnapshot.data!.docs.first.data();
+                                        final String expertise1 = expertiseDocs['expertise1'] ?? '';
+                                        final String expertise2 = expertiseDocs['expertise2'] ?? '';
+                                        final String expertise3 = expertiseDocs['expertise3'] ?? '';
 
                                         return SizedBox(
                                           width: double.infinity,
                                           child: Wrap(
-                                            alignment:
-                                                WrapAlignment.spaceBetween,
+                                            alignment: WrapAlignment.spaceBetween,
                                             children: [
-                                              if (expertise1 != null &&
-                                                  expertise1 != '')
+                                              if (expertise1.isNotEmpty)
                                                 Chip(
                                                   label: Text(expertise1),
                                                   shape: const StadiumBorder(),
                                                   backgroundColor: Color(
-                                                          Color_helper
-                                                              .white_background_color)
-                                                      .withOpacity(0.5),
+                                                    Color_helper.white_background_color,
+                                                  ).withOpacity(0.5),
                                                 ),
-                                              if (expertise2 != null &&
-                                                  expertise2 != '')
+                                              if (expertise2.isNotEmpty)
                                                 Chip(
                                                   label: Text(expertise2),
                                                   shape: const StadiumBorder(),
                                                   backgroundColor: Color(
-                                                          Color_helper
-                                                              .white_background_color)
-                                                      .withOpacity(0.5),
+                                                    Color_helper.white_background_color,
+                                                  ).withOpacity(0.5),
                                                 ),
-                                              if (expertise3 != null &&
-                                                  expertise3 != '')
+                                              if (expertise3.isNotEmpty)
                                                 Chip(
                                                   label: Text(expertise3),
                                                   shape: const StadiumBorder(),
                                                   backgroundColor: Color(
-                                                          Color_helper
-                                                              .white_background_color)
-                                                      .withOpacity(0.5),
+                                                    Color_helper.white_background_color,
+                                                  ).withOpacity(0.5),
                                                 ),
                                             ],
                                           ),
@@ -217,12 +212,12 @@ class AdminRiphahWorld extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                              onPressed: () {
-                                WidgetHelper.alert_widget(
+                              onPressed: ()async{
+                                await WidgetHelper.alert_widget(
                                     context,
                                     "Sure to Delete",
-                                    () => deleteTeacher(context, doc.id));
-                                Navigator.pop(context);
+                                    () => deleteTeacher(context, doc.id)
+                                );
                                 debugPrint("Detele Admin Button Call");
                               },
                               icon: const Icon(

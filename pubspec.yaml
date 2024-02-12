@@ -57,6 +57,7 @@ dev_dependencies:
   syncfusion_flutter_gauges: ^24.2.4
   flutter_slidable: ^3.0.1
   dotted_border: ^2.1.0
+  image_picker: ^1.0.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

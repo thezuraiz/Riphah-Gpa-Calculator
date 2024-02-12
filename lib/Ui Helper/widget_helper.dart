@@ -45,41 +45,45 @@ class WidgetHelper {
     );
   }
 
-  static alert_widget(
-          BuildContext context, final String titleMessage, final VoidCallback callback) =>
+  static alert_widget(BuildContext context, final String titleMessage,
+          VoidCallback callback) =>
       showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(
-                titleMessage,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 22),
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text(
+              titleMessage,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+                fontSize: 22,
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    "Cancel",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 16),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  "Cancel",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 16,
                   ),
                 ),
-                TextButton(
-                  onPressed: () => callback(),
-                  child: const Text(
-                    "Delete",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
-                        fontSize: 16),
+              ),
+              TextButton(
+                onPressed: () => callback(),
+                child: const Text(
+                  "Delete",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    fontSize: 16,
                   ),
                 ),
-              ],
-            );
-          });
+              ),
+            ],
+          );
+        },
+      );
 }

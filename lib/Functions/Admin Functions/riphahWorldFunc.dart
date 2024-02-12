@@ -3,6 +3,8 @@ import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 deleteTeacher(BuildContext context, final id) async {
+  debugPrint("pressed: pressed");
+  Navigator.pop(context);
   try {
     await FirebaseFirestore.instance
         .collection("riphahFaculty")

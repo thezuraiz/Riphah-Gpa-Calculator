@@ -22,5 +22,6 @@ class Routes{
   static String adminaddpage = '/admin-add-page';
   static String removeadminpage = 'remove-admin-page';
   static String adminriphahworld = '/adminriphahworld';
+  static String add_admin_riphah_world = '/add_admin_riphah_world';
 
 }
