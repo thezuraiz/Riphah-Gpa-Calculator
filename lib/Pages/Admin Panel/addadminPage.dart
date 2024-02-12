@@ -19,7 +19,7 @@ class AddAdminPage extends StatelessWidget {
         title: const Text("Add Admin Panel"),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Form(
           key: _formKey,
           child: ListView(

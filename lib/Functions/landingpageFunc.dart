@@ -8,7 +8,7 @@ signoutButton(context){
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text("Are You Sure to Log Out"),
+        title: const Text("Are You Sure to Log Out"),
         actions: [
           TextButton(
             onPressed: () {
@@ -27,7 +27,7 @@ signoutButton(context){
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text(
+            child: const Text(
               "No",
               style: TextStyle(
                 color: Colors.black,

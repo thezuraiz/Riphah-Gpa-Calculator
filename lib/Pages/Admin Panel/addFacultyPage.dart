@@ -128,7 +128,9 @@ class _addFacultyPageState extends State<addFacultyPage> {
                                     .putFile(pickedImage!);
                                 TaskSnapshot taskSnapshot = await uploadTask;
                                 url = await taskSnapshot.ref.getDownloadURL();
-                              } catch (e) {}
+                              } catch (e) {
+                                debugPrint('No Profile Picture');
+                              }
 
                               await FirebaseFirestore.instance
                                   .collection('riphahFaculty')

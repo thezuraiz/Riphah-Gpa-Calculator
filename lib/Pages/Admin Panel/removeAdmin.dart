@@ -41,7 +41,7 @@ class RemoveAdminPage extends StatelessWidget {
                       backgroundColor: Color(Color_helper.button_color),
                       child: Text(
                         '${index + 1}',
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                     trailing: IconButton(

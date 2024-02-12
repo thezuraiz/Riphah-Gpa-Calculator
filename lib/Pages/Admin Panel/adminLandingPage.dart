@@ -11,7 +11,7 @@ class AdminLandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Color(Color_helper.background_color),
-      padding: EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

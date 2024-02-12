@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         Routes.adminaddpage: (context) => const AddAdminPage(),
         Routes.removeadminpage: (context) => const RemoveAdminPage(),
         Routes.adminriphahworld: (context) => const AddRiphahWorld(),
-        Routes.add_admin_riphah_world: (context) => addFacultyPage()
+        Routes.add_admin_riphah_world: (context) => const addFacultyPage()
       },
     );
   }

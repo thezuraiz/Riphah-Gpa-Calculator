@@ -11,8 +11,8 @@ signUp(BuildContext context, final String name, final String sap,
     final String email, String password) async {
   if (email.isEmpty || password.isEmpty) return;
 
-  print("email $email");
-  print("pass: $password");
+  debugPrint("email $email");
+  debugPrint("pass: $password");
   try {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
@@ -49,7 +49,9 @@ uploadData(BuildContext context, final String name, final String email,
       Future.delayed(const Duration(seconds: 1));
       Navigator.popAndPushNamed(context, Routes.checkConnection);
     });
-  } catch (e) {}
+  } catch (e) {
+    debugPrint('Error on uploadData: ${e.toString()}');
+  }
 }
 
 // For Google Authentication
@@ -82,7 +84,7 @@ Future<UserCredential?> signInWithGoogle(context) async {
         "profile_picture": pictureUrl
       });
     } catch (e) {
-      print("Error: ${e.toString()}");
+      debugPrint("Error: ${e.toString()}");
     }
     Navigator.popAndPushNamed(context, Routes.checkConnection);
   });

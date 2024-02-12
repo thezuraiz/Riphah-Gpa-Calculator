@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 calculateGPA(
     final String pCH, final String pGPA, final String nCHR, final String nGPA) {
@@ -22,7 +23,9 @@ calculateGPA(
       "last_cgpa": CGPA.toString(),
       "total_subjects": Previous_Credit_Hrs + New_Credit_Hrs
     });
-  } catch (e) {}
+  } catch (e) {
+    debugPrint('Error on CalculateGPA: ${e.toString()}');
+  }
 
   return CGPA;
 }

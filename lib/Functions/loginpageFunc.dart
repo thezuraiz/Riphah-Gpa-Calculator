@@ -24,12 +24,12 @@ StudentLoginPage(BuildContext context, final formKey, final String email,
 
 AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
     String email, String password) async {
-  print("object-> $email");
-  print("object-> $password");
+  debugPrint("object-> $email");
+  debugPrint("object-> $password");
   try {
     await FirebaseAuth.instance.signOut();
   } catch (e) {
-    print("Error signing out: $e");
+    debugPrint("Error signing out: $e");
   }
 
   try {
@@ -50,7 +50,7 @@ AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
         // Access the data inside the document
         final data = docSnapshot.data();
 
-        // Print the entire data
+        // debugPrint the entire data
         debugPrint("Data inside the document: $data");
         debugPrint("User Password: ${data!['adminEmail']}");
         debugPrint("User Password: ${data!['adminPass']}");
@@ -69,9 +69,9 @@ AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
     }
   } on FirebaseAuthException catch (e) {
     WidgetHelper.custom_error_toast(context, e.code);
-    print("FirebaseAuthException: ${e.code.toString()}");
+    debugPrint("FirebaseAuthException: ${e.code.toString()}");
   } catch (e) {
-    print("Error: $e");
+    debugPrint("Error: $e");
     WidgetHelper.custom_error_toast(context, "An error occurred");
   }
 }

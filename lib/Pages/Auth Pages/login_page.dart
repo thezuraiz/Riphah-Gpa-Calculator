@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (adminTap <= 10) {
                       adminTap++;
                     }
-                    ;
+
                     if (adminTap == 10) {
                       setState(() {
                         adminPanel = true;

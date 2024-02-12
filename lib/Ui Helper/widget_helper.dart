@@ -9,7 +9,7 @@ class WidgetHelper {
 
   static ToastFuture custom_error_toast(
       BuildContext context, final String msg) {
-    return showToast("$msg",
+    return showToast(msg,
         context: context,
         animation: StyledToastAnimation.fadeScale,
         position: StyledToastPosition.top,
@@ -20,7 +20,7 @@ class WidgetHelper {
 
   static ToastFuture custom_message_toast(
       BuildContext context, final String msg) {
-    return showToast('$msg',
+    return showToast(msg,
         context: context,
         animation: StyledToastAnimation.fadeScale,
         position: StyledToastPosition.top,

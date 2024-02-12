@@ -395,7 +395,9 @@ Widget ButtomGPAComponent(totalCr, selectedCreditPoints) {
     FirebaseFirestore.instance.collection("Students").doc(studentId).update({
       "gpa": selectedCreditPoints.toStringAsFixed(2)
     });
-  }catch(e){}
+  }catch(e){
+    debugPrint("Error on ButtonGPAComponent: ${e.toString()}");
+  }
 
   var crHrs = totalCr.fold(0, (sum, cr) {
     if (cr == null) cr = '0';
