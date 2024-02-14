@@ -57,9 +57,9 @@ class MyApp extends StatelessWidget {
 
         // Admin Panel
         Routes.adminloginsreen: (context) => const AdminLoginSreen(),
-        // Rest are in Modules
         Routes.adminriphahworld: (context) => const AddRiphahWorld(),
         Routes.add_teacher_riphah_world: (context) => const addFacultyPage()
+        // Rest are in Modules
       },
     );
   }

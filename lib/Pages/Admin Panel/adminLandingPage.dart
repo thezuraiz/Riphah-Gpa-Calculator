@@ -25,7 +25,7 @@ class AdminLandingPage extends StatelessWidget {
             scale: 4,
           ),
           WidgetHelper.customSizedBox(60),
-          WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.add_teacher_riphah_world),"Add Faculty to Riphah World"),
+          WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.adminriphahworld),"Add Faculty to Riphah World"),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(
               () => Navigator.push(context, MaterialPageRoute(builder: (context) => AddAdminPage(email: email))),
