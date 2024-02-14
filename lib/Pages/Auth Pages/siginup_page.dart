@@ -86,6 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }else if(!value.endsWith('@students.riphah.edu.pk')){
                           return 'Only Riphah Students Allow. SignIn With Google!';
                         }
+                        return null;
                       },
                       controller: emailController,
                     ),

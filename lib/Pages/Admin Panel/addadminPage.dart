@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/adminFunc.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AddAdminPage extends StatelessWidget {
   AddAdminPage({super.key,required this.email});

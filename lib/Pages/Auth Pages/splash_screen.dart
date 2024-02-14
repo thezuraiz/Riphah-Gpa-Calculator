@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/routes.dart';
 
 class SplashScreen extends StatefulWidget {
