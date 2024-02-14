@@ -4,15 +4,15 @@ import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AddAdminPage extends StatelessWidget {
-  const AddAdminPage({super.key});
+  AddAdminPage({super.key,required this.email});
+  final email;
 
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    final String referenceAdmin = FirebaseAuth.instance.currentUser!.uid;
-    // final String referenceAdmin = 'FirebaseAuth.instance.currentUser!.uid';
+    final String referenceAdmin = email;
 
     return Scaffold(
       appBar: AppBar(

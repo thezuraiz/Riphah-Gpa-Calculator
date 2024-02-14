@@ -18,6 +18,7 @@ class Routes{
   static String todomainpage = '/todomainpage';
 
   // Admin Panel
+  static String adminloginsreen = 'admin-login-sreen';
   static String adminlandingpage = '/admin-landing-page';
   static String adminaddpage = '/admin-add-page';
   static String removeadminpage = 'remove-admin-page';

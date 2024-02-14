@@ -3,8 +3,11 @@ import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import '../Ui Helper/widget_helper.dart';
 import '../routes.dart';
+import 'package:crypto/crypto.dart';
 
 StudentLoginPage(BuildContext context, final formKey, final String email,
     final String password) async {
@@ -26,53 +29,55 @@ StudentLoginPage(BuildContext context, final formKey, final String email,
   }
 }
 
-Future<String> AdminLoginPanel(
-    GlobalKey<FormState> formKey, String email, String password) async {
+AdminLoginPanel(context, GlobalKey<FormState> formKey, String email,
+    String password) async {
   debugPrint("object-> $email");
   debugPrint("object-> $password");
-  // try {
-  //   await FirebaseAuth.instance.signOut();
-  // } catch (e) {
-  //   debugPrint("Error signing out: $e");
-  // }
 
+  try {
+    debugPrint("Context after Singin: $context");
 
-   final Auth =  await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    ).then((value) async {
+    final bytes = await utf8.encode(email);
+    final uniqueId = await sha256.convert(bytes).toString();
+    debugPrint("UniqueId: $uniqueId");
 
-      final userId = FirebaseAuth.instance.currentUser?.uid;
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection("adminTeachers")
+        .doc(uniqueId)
+        .get();
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data();
+      debugPrint("Context: $context");
+      debugPrint("Data inside the document: $data");
+      debugPrint("User Email: ${data!['adminEmail']}");
+      debugPrint("User Password: ${data!['adminPass']}");
 
-      final docSnapshot = await FirebaseFirestore.instance
-          .collection("adminTeachers")
-          .doc(userId)
-          .get();
+      final firestoreEmail = data!['adminEmail'];
+      final firestorePassword = data!['adminPass'];
 
-      if (docSnapshot.exists) {
-        final data = docSnapshot.data();
-        debugPrint("User Email: ${data!['adminEmail']}");
-        debugPrint("User Password: ${data!['adminPass']}");
+      final bytes = await utf8.encode(password);
+      final hashPassword = await sha256.convert(bytes).toString();
+      debugPrint("Digest as hex string: $hashPassword");
 
-        final firestoreEmail = data!['adminEmail'];
-        final bytes = utf8.encode(password);
-        final hashPassword = sha256.convert(bytes).toString();
-
-        if (firestoreEmail == email && data['adminPass'] == hashPassword) {
-          debugPrint("Credentials Matched");
-          debugPrint('Authorized');
-          return 'true';
-        }
+      if (firestoreEmail == email && firestorePassword == hashPassword) {
+        debugPrint("Credentials Matched");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AdminLandingPage(email: email)));
+        WidgetHelper.custom_message_toast(context, "Authorized");
       } else {
-        debugPrint("Document does not exist");
-        // Handle unauthorized user
-        return 'null';
+        debugPrint("Context: $context");
+        WidgetHelper.custom_error_toast(context, "Invalid Credentials");
+        await FirebaseAuth.instance.signOut();
       }
-    });
-   if(Auth != null){
-     return 'true';
-   }
-    return 'null';
-  // debugPrint("Context after Singin: $context");
+    } else {
+      debugPrint("Document does not exist");
+      WidgetHelper.custom_error_toast(context, "Unauthorized User");
+      await FirebaseAuth.instance.signOut();
+    }
+  } catch (e) {
+    debugPrint("Error: $e");
+    WidgetHelper.custom_error_toast(context, "An error occurred: Try again!");
+  }
 }

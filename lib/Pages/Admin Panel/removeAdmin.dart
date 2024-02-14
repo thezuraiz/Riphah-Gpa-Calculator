@@ -4,7 +4,8 @@ import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/adminFunc.dar
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 
 class RemoveAdminPage extends StatelessWidget {
-  const RemoveAdminPage({super.key});
+  RemoveAdminPage({super.key, required this.email});
+  final email;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class RemoveAdminPage extends StatelessWidget {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 final doc = snapshot.data!.docs[index];
-                // final data = doc.data() as Map<String, dynamic>;
+
                 return Card(
                   child: ListTile(
                     title: Text(doc['adminEmail']),
@@ -51,15 +52,14 @@ class RemoveAdminPage extends StatelessWidget {
                         debugPrint(doc.id);
                         showDialog(
                             context: context,
-                            builder: (context) {
+                            builder: (dialogContext) {
                               return AlertDialog(
                                 content: const Text(
                                   "Are You Sure to remove Admin?",
                                 ),
                                 actions: [
                                   TextButton(
-                                    onPressed: () =>
-                                        deleteAdmin(context, doc.id),
+                                    onPressed: () => deleteAdmin(dialogContext, email, doc.id),
                                     child: const Text(
                                       "Yes",
                                       style: TextStyle(

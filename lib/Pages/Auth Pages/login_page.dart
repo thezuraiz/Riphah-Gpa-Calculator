@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool adminPanel = false;
   int adminTap = 0;
 
   @override
@@ -30,9 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             key: formKey,
             child: Column(
               children: [
-                (adminPanel)
-                    ? WidgetHelper.customSizedBox(60)
-                    : WidgetHelper.customSizedBox(30),
+                     WidgetHelper.customSizedBox(30),
                 InkWell(
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
@@ -43,8 +40,9 @@ class _LoginPageState extends State<LoginPage> {
 
                     if (adminTap == 10) {
                       setState(() {
-                        adminPanel = true;
                         debugPrint("Admin panel true");
+                        Navigator.popAndPushNamed(context, Routes.adminloginsreen);
+                        WidgetHelper.custom_message_toast(context, "You are now admin console");
                         adminTap = 0;
                       });
                     }
@@ -61,14 +59,14 @@ class _LoginPageState extends State<LoginPage> {
                 WidgetHelper.customSizedBox(55),
                 TextFormField(
                   decoration: InputDecoration(
-                    hintText: adminPanel ? "example@riphah.edu.pk": 'example@students.riphah.edu.pk',
+                    hintText: 'example@students.riphah.edu.pk',
                     prefixIcon: const Icon(Icons.email_outlined),
                   ),
                   controller: emailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Required";
-                      } else if (!value.endsWith( adminPanel ? "@riphah.edu.pk" : "@students.riphah.edu.pk")) {
+                      } else if (!value.endsWith( "@students.riphah.edu.pk")) {
                         return "Only Riphah Email Required";
                       } else if (!value.contains('@')) {
                         return "Invalid Email";
@@ -91,32 +89,17 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   // height: 60,
                   child: ElevatedButton(
-                      onPressed: ()async{
+                      onPressed: (){
                         if(formKey.currentState!.validate()) {
                           FocusManager.instance.primaryFocus!.unfocus();
                           final email = emailController.text.toString();
                           final password = passwordController.text.toString();
-                          if (adminPanel) {
-                            final result = await AdminLoginPanel(formKey, email, password);
-                            debugPrint('result: $result');
-                            // Navigate to admin landing page after successful login
-                            if(result == 'true') {
-                              debugPrint('You are Login');
-                              await WidgetHelper.custom_message_toast(context,'You are Login');
-                              // Navigator.pushNamed(
-                              //     context, Routes.adminlandingpage);
-                            }
-                          } else {
-                            await StudentLoginPage(context,formKey, email, password);
-                            // Navigate to student landing page after successful login
-                            // Navigator.pushNamed(context, Routes.studentlandingpage);
-                          }
+                          StudentLoginPage(context,formKey, email, password);
                         }
                       },
                       child: const Text("Log In")),
                 ),
                 WidgetHelper.customSizedBox(20),
-                if (!adminPanel)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
@@ -143,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                if (!adminPanel)
                   TextButton(
                     onPressed: () =>
                         Navigator.popAndPushNamed(context, Routes.signupPage),

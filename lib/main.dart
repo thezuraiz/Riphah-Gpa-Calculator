@@ -4,6 +4,7 @@ import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addadminPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addRiphahWorld.dart';
 import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/removeAdmin.dart';
+import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/adminloginsreen.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/siginup_page.dart';
 import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/splash_screen.dart';
@@ -55,9 +56,8 @@ class MyApp extends StatelessWidget {
         Routes.todomainpage: (context) => const TodoMainPage(),
 
         // Admin Panel
-        Routes.adminlandingpage: (context) => const AdminLandingPage(),
-        Routes.adminaddpage: (context) => const AddAdminPage(),
-        Routes.removeadminpage: (context) => const RemoveAdminPage(),
+        Routes.adminloginsreen: (context) => const AdminLoginSreen(),
+        // Rest are in Modules
         Routes.adminriphahworld: (context) => const AddRiphahWorld(),
         Routes.add_teacher_riphah_world: (context) => const addFacultyPage()
       },

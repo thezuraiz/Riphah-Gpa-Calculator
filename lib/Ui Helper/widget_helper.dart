@@ -32,7 +32,7 @@ class WidgetHelper {
       messageText: Text(msg, style: const TextStyle(color: Colors.white)),
       flushbarPosition: FlushbarPosition.TOP,
       backgroundColor: Color(0xFFe3a038),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
       borderRadius: BorderRadius.circular(8),

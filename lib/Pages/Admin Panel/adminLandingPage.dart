@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addadminPage.dart';
+import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/removeAdmin.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:riphah_cgpa_calculator/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AdminLandingPage extends StatelessWidget {
-  const AdminLandingPage({super.key});
-
+  AdminLandingPage({super.key,required this.email});
+  final email;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,17 +25,14 @@ class AdminLandingPage extends StatelessWidget {
             scale: 4,
           ),
           WidgetHelper.customSizedBox(60),
-          WidgetHelper.CustomElevatedButton(
-              () => Routes.add_teacher_riphah_world,
-              'Add Faculty to Riphah World'),
+          WidgetHelper.CustomElevatedButton(() => Navigator.pushNamed(context, Routes.add_teacher_riphah_world),"Add Faculty to Riphah World"),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(
-              () => Navigator.pushNamed(context, Routes.adminaddpage),
+              () => Navigator.push(context, MaterialPageRoute(builder: (context) => AddAdminPage(email: email))),
               'Add Admin'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(
-              () => Navigator.pushNamed(context, Routes.removeadminpage),
-              'Remove Admin'),
+              () => Navigator.push(context, MaterialPageRoute(builder: (context) => RemoveAdminPage(email: email))), 'Remove Admin'),
           WidgetHelper.customSizedBox(10),
           WidgetHelper.CustomElevatedButton(() {
             showDialog(
