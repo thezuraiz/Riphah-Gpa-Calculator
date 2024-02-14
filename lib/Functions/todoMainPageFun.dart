@@ -167,7 +167,6 @@ updateData<Widget>(BuildContext context, final uid, final time, String title,
                         onPressed: () async {
                           try {
                             FocusManager.instance.primaryFocus!.unfocus();
-                            Navigator.pop(context);
                             await FirebaseFirestore.instance
                                 .collection("Students")
                                 .doc(uid)
@@ -178,8 +177,9 @@ updateData<Widget>(BuildContext context, final uid, final time, String title,
                               'description': descController.text.toString()
                             });
                           } catch (e) {
-                            // print(e);
+                            debugPrint(e.toString());
                           }
+                          Navigator.pop(context);
                         },
                         child: const Text("Update")))
               ],

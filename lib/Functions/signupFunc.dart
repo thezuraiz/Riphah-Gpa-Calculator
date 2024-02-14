@@ -33,21 +33,21 @@ signUp(BuildContext context, final String name, final String sap,
 
 // To upload data on sign up form
 uploadData(BuildContext context, final String name, final String email,
-    final String sap) async {
+    final String sap) async{
   try {
-    String studentID = FirebaseAuth.instance.currentUser!.uid;
+    String studentID = await FirebaseAuth.instance.currentUser!.uid;
     await FirebaseFirestore.instance.collection("Students").doc(studentID).set({
       "name": name,
       "email": email,
       "sap": sap,
       "gpa": "",
       "last_cgpa": "",
-      "total_subjects": "",
-      "profile_picture": ""
-    }).then((value) {
-      Navigator.popAndPushNamed(context, Routes.checkConnection);
-      WidgetHelper.custom_message_toast(context, "Account Created");
+      "total_subjects": ""
     });
+    await WidgetHelper.custom_message_toast(context, "Account Created");
+    await Navigator.popAndPushNamed(context, Routes.checkConnection);
+
+
   } catch (e) {
     debugPrint('Error on uploadData: ${e.toString()}');
   }

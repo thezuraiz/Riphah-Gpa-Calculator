@@ -26,63 +26,53 @@ StudentLoginPage(BuildContext context, final formKey, final String email,
   }
 }
 
-AdminLoginPanel(BuildContext context, GlobalKey<FormState> formKey,
-    String email, String password) async {
+Future<String> AdminLoginPanel(
+    GlobalKey<FormState> formKey, String email, String password) async {
   debugPrint("object-> $email");
   debugPrint("object-> $password");
-  try {
-    await FirebaseAuth.instance.signOut();
-  } catch (e) {
-    debugPrint("Error signing out: $e");
-  }
+  // try {
+  //   await FirebaseAuth.instance.signOut();
+  // } catch (e) {
+  //   debugPrint("Error signing out: $e");
+  // }
 
-  try {
-    final userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+
+   final Auth =  await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
       email: email,
       password: password,
-    );
+    ).then((value) async {
 
-    // Ensure user is signed in before accessing currentUser
-    if (userCredential.user != null) {
-      final userId = FirebaseAuth.instance.currentUser!.uid;
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+
       final docSnapshot = await FirebaseFirestore.instance
           .collection("adminTeachers")
           .doc(userId)
           .get();
-      if (docSnapshot.exists) {
-        // Access the data inside the document
-        final data = docSnapshot.data();
 
-        // debugPrint the entire data
-        debugPrint("Data inside the document: $data");
-        debugPrint("User Password: ${data!['adminEmail']}");
+      if (docSnapshot.exists) {
+        final data = docSnapshot.data();
+        debugPrint("User Email: ${data!['adminEmail']}");
         debugPrint("User Password: ${data!['adminPass']}");
 
         final firestoreEmail = data!['adminEmail'];
-        final firestorePassword = data!['adminPass'];
+        final bytes = utf8.encode(password);
+        final hashPassword = sha256.convert(bytes).toString();
 
-        final bytes = await utf8.encode(password);
-        final hashPassword = await sha256.convert(bytes);
-        print("Digest as hex string: $hashPassword");
-
-        if (firestoreEmail == email && firestorePassword == hashPassword) {
-          WidgetHelper.custom_message_toast(context, "Authorized");
-          Navigator.pushNamed(context, Routes.adminlandingpage);
+        if (firestoreEmail == email && data['adminPass'] == hashPassword) {
+          debugPrint("Credentials Matched");
           debugPrint('Authorized');
-        } else {
-          WidgetHelper.custom_error_toast(context, "Invalid Credentials");
+          return 'true';
         }
       } else {
         debugPrint("Document does not exist");
-        WidgetHelper.custom_error_toast(context, "Unauthorized User");
+        // Handle unauthorized user
+        return 'null';
       }
-    }
-  } on FirebaseAuthException catch (e) {
-    WidgetHelper.custom_error_toast(context, e.code);
-    debugPrint("FirebaseAuthException: ${e.code.toString()}");
-  } catch (e) {
-    debugPrint("Error: $e");
-    WidgetHelper.custom_error_toast(context, "An error occurred");
-  }
+    });
+   if(Auth != null){
+     return 'true';
+   }
+    return 'null';
+  // debugPrint("Context after Singin: $context");
 }

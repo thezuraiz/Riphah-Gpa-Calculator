@@ -9,7 +9,8 @@ class WidgetHelper {
     return SizedBox(height: h);
   }
 
-  static custom_error_toast(BuildContext context, final String msg) {
+  static custom_error_toast(var context, final String msg) {
+    debugPrint("Context error: $context");
     return Flushbar(
       icon: Icon(Icons.error_outline,color: Colors.white,),
       title: 'Error!',
@@ -24,7 +25,8 @@ class WidgetHelper {
   }
 
 
-  static custom_message_toast(BuildContext context, final String msg) {
+  static custom_message_toast(var context, final String msg) {
+    debugPrint("Context message: $context");
     return Flushbar(
       icon: Icon(Icons.done,color: Colors.white),
       messageText: Text(msg, style: const TextStyle(color: Colors.white)),

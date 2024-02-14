@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Main Context: ${context}');
     final formKey = GlobalKey<FormState>();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -90,16 +91,26 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   // height: 60,
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: ()async{
                         if(formKey.currentState!.validate()) {
                           FocusManager.instance.primaryFocus!.unfocus();
                           final email = emailController.text.toString();
                           final password = passwordController.text.toString();
-                          adminPanel
-                              ? AdminLoginPanel(
-                              context, formKey, email, password)
-                              : StudentLoginPage(
-                              context, formKey, email, password);
+                          if (adminPanel) {
+                            final result = await AdminLoginPanel(formKey, email, password);
+                            debugPrint('result: $result');
+                            // Navigate to admin landing page after successful login
+                            if(result == 'true') {
+                              debugPrint('You are Login');
+                              await WidgetHelper.custom_message_toast(context,'You are Login');
+                              // Navigator.pushNamed(
+                              //     context, Routes.adminlandingpage);
+                            }
+                          } else {
+                            await StudentLoginPage(context,formKey, email, password);
+                            // Navigate to student landing page after successful login
+                            // Navigator.pushNamed(context, Routes.studentlandingpage);
+                          }
                         }
                       },
                       child: const Text("Log In")),
