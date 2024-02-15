@@ -34,10 +34,11 @@ class _RiphahWorldState extends State<RiphahWorld> {
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
               return const Center(child: Text('No data available'));
             }
+            final sortedDocs = snapshot.data!.docs.toList()..sort((a, b) => a['teacherName'].compareTo(b['teacherName']));
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
-                final doc = snapshot.data!.docs[index];
+                final doc = sortedDocs[index];
                 final image = doc['teacherProfilePicture'];
                 return Card(
                   shape: RoundedRectangleBorder(
