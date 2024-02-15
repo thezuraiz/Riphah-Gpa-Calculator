@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '523523824918',
     projectId: 'riphah-cgpa-calculator-b5ef4',
     storageBucket: 'riphah-cgpa-calculator-b5ef4.appspot.com',
+    androidClientId: '523523824918-cn2iienm1glhha9vjf7jhf6liao53eve.apps.googleusercontent.com',
+    iosClientId: '523523824918-i34uv9u8r6qjk6hq4uk46drb657s2c4b.apps.googleusercontent.com',
     iosBundleId: 'com.thezuraiz.riphahCgpaCalculator',
   );
 }
