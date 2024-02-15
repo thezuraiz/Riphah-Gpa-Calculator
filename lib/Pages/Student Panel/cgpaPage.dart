@@ -1,7 +1,7 @@
+import 'package:Riphah_CGPA_Calculator/Functions/cgpaFunc.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/color.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:riphah_cgpa_calculator/Functions/cgpaFunc.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class CGPAPage extends StatefulWidget {

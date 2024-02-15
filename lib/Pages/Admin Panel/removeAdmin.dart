@@ -1,7 +1,7 @@
+import 'package:Riphah_CGPA_Calculator/Functions/Admin%20Functions/adminFunc.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/color.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/adminFunc.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
 
 class RemoveAdminPage extends StatelessWidget {
   RemoveAdminPage({super.key, required this.email});

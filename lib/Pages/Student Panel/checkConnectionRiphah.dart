@@ -1,7 +1,7 @@
+import 'package:Riphah_CGPA_Calculator/Pages/Auth%20Pages/login_page.dart';
+import 'package:Riphah_CGPA_Calculator/Pages/Student%20Panel/landingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:riphah_cgpa_calculator/Pages/Auth%20Pages/login_page.dart';
-import 'package:riphah_cgpa_calculator/Pages/Student%20Panel/landingPage.dart';
 
 class CheckRiphah extends StatelessWidget {
   const CheckRiphah({super.key});

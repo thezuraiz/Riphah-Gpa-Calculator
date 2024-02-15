@@ -1,9 +1,9 @@
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/color.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 
 class RiphahWorld extends StatefulWidget {
   const RiphahWorld({super.key});
@@ -20,7 +20,7 @@ class _RiphahWorldState extends State<RiphahWorld> {
         title: const Text("Riphah Faculty"),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: StreamBuilder<QuerySnapshot>(
           stream:
               FirebaseFirestore.instance.collection("riphahFaculty").snapshots(),
@@ -53,18 +53,18 @@ class _RiphahWorldState extends State<RiphahWorld> {
                             ? CircleAvatar(
                                 backgroundColor: Color(Color_helper.button_color),
                                 backgroundImage: NetworkImage(image),
-                                radius: 85,
+                                radius: 75,
                               )
                             : const CircleAvatar(
                                 backgroundColor: Colors.white,
-                                radius: 85,
+                                radius: 75,
                                 child: Icon(
                                   Icons.person_4_outlined,
                                   size: 85,
                                   color: Color(0xFFc0def6),
                                 ),
                               ),
-                        WidgetHelper.customSizedBox(20),
+                        WidgetHelper.customSizedBox(15),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

@@ -1,6 +1,6 @@
+import 'package:Riphah_CGPA_Calculator/Functions/loginpageFunc.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:riphah_cgpa_calculator/Functions/loginpageFunc.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class AdminLoginSreen extends StatelessWidget {

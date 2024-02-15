@@ -1,9 +1,8 @@
+import 'package:Riphah_CGPA_Calculator/Pages/Admin%20Panel/addadminPage.dart';
+import 'package:Riphah_CGPA_Calculator/Pages/Admin%20Panel/removeAdmin.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
+import 'package:Riphah_CGPA_Calculator/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/addadminPage.dart';
-import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/removeAdmin.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
-import 'package:riphah_cgpa_calculator/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AdminLandingPage extends StatelessWidget {
@@ -13,7 +12,7 @@ class AdminLandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Color(Color_helper.background_color),
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

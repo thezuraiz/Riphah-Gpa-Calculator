@@ -1,13 +1,11 @@
 import 'dart:convert';
+import 'package:Riphah_CGPA_Calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:riphah_cgpa_calculator/Pages/Admin%20Panel/adminLandingPage.dart';
 import '../Ui Helper/widget_helper.dart';
 import '../routes.dart';
-import 'package:crypto/crypto.dart';
 
 StudentLoginPage(BuildContext context, final formKey, final String email,
     final String password) async {

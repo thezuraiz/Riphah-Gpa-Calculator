@@ -1,5 +1,5 @@
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 deleteTeacher(BuildContext context, final id) async {

@@ -1,9 +1,9 @@
+import 'package:Riphah_CGPA_Calculator/Functions/Admin%20Functions/riphahWorldFunc.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/color.dart';
+import 'package:Riphah_CGPA_Calculator/Ui%20Helper/widget_helper.dart';
+import 'package:Riphah_CGPA_Calculator/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:riphah_cgpa_calculator/Functions/Admin%20Functions/riphahWorldFunc.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/color.dart';
-import 'package:riphah_cgpa_calculator/Ui%20Helper/widget_helper.dart';
-import 'package:riphah_cgpa_calculator/routes.dart';
 
 class AddRiphahWorld extends StatelessWidget {
   const AddRiphahWorld({Key? key}) : super(key: key);

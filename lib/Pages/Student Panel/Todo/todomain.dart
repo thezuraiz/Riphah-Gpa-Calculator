@@ -1,6 +1,6 @@
+import 'package:Riphah_CGPA_Calculator/Functions/todoMainPageFun.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:riphah_cgpa_calculator/Functions/todoMainPageFun.dart';
 
 class TodoMainPage extends StatelessWidget {
   const TodoMainPage({super.key});
