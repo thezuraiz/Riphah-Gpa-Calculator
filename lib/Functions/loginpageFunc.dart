@@ -46,16 +46,16 @@ AdminLoginPanel(context, GlobalKey<FormState> formKey, String email,
     if (docSnapshot.exists) {
       final data = docSnapshot.data();
       debugPrint("Context: $context");
-      debugPrint("Data inside the document: $data");
+      // debugPrint("Data inside the document: $data");
       debugPrint("User Email: ${data!['adminEmail']}");
-      debugPrint("User Password: ${data!['adminPass']}");
+      // debugPrint("User Password: ${data!['adminPass']}");
 
       final firestoreEmail = data!['adminEmail'];
       final firestorePassword = data!['adminPass'];
 
       final bytes = await utf8.encode(password);
       final hashPassword = await sha256.convert(bytes).toString();
-      debugPrint("Digest as hex string: $hashPassword");
+      // debugPrint("Digest as hex string: $hashPassword");
 
       if (firestoreEmail == email && firestorePassword == hashPassword) {
         debugPrint("Credentials Matched");

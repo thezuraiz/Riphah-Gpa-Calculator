@@ -55,41 +55,55 @@ uploadData(BuildContext context, final String name, final String email,
 
 // For Google Authentication
 
-Future<UserCredential?> signInWithGoogle(context) async {
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
-
-  UserCredential? user = await FirebaseAuth.instance
-      .signInWithCredential(credential)
-      .then((value) async {
-    try {
-      final profile = value.additionalUserInfo!.profile;
-      final givenName = profile!['given_name'];
-      final familyName = profile['family_name'];
-      final pictureUrl = profile['picture'];
-      String studentId = FirebaseAuth.instance.currentUser!.uid;
-      final email = profile['email'];
-
-      final userRef = await FirebaseFirestore.instance.collection("Students").doc(studentId);
-
-      final userData = await userRef.get();
-
-      if (!userData.exists) {
-        await userRef.set({
-          "name": "$givenName $familyName",
-          "email": email,
-          "profile_picture": pictureUrl
-        });
-      }
-    } catch (e) {
-      debugPrint("Error: ${e.toString()}");
+Future<UserCredential?> signInWithGoogle(BuildContext context) async {
+  try {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+    await googleUser?.authentication;
+    if (googleAuth == null) {
+      throw FirebaseAuthException(
+        code: 'google-auth-error',
+        message: 'Failed to authenticate via Google.',
+      );
     }
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final profile = userCredential.additionalUserInfo?.profile;
+    if (profile == null) {
+      throw FirebaseAuthException(
+        code: 'profile-error',
+        message: 'Failed to retrieve user profile.',
+      );
+    }
+
+    final givenName = profile['given_name'];
+    final familyName = profile['family_name'];
+    final pictureUrl = profile['picture'];
+    final email = profile['email'];
+
+    final studentId = FirebaseAuth.instance.currentUser!.uid;
+    final userRef = FirebaseFirestore.instance.collection("Students").doc(studentId);
+    final userData = await userRef.get();
+
+    if (!userData.exists) {
+      await userRef.set({
+        "name": "$givenName $familyName",
+        "email": email,
+        "profile_picture": pictureUrl
+      });
+    }
+
     Navigator.popAndPushNamed(context, Routes.checkConnection);
-  });
-  return user;
+
+    return userCredential;
+  } catch (e) {
+    debugPrint("Error: ${e.toString()}");
+    WidgetHelper.custom_error_toast(context, 'Something Went Wrong!');
+    return null;
+  }
 }
